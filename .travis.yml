@@ -16,6 +16,10 @@ before_script:
   - wget http://www.cmake.org/files/v3.2/cmake-3.2.3-Linux-x86_64.tar.gz -O /tmp/cmake.tar.gz
   - tar -xvf /tmp/cmake.tar.gz
   - export CMAKE=$PWD/cmake-3.2.3-Linux-x86_64/bin/cmake
+  - mkdir gtest && cd gtest
+  - cmake -DCMAKE_BUILD_TYPE=RELEASE /usr/src/gtest/
+  - make
+  - export LD_LIBRARY_PATH=$PWD:$LD_LIBRARY_PATH
 
 script:
   - mkdir bin && cd bin
