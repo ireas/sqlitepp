@@ -1,0 +1,6 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="node1" href="$classsqlitepp_1_1Openable.html" title="An element that has the two states open and closed. " alt="" coords="12,5,143,32"/>
+<area shape="rect" id="node2" href="$classsqlitepp_1_1Database.html" title="A handle for a SQLite3 database. " alt="" coords="199,5,330,32"/>
+<area shape="rect" id="node3" href="$classsqlitepp_1_1Statement.html" title="A handle for a SQLite3 statement. " alt="" coords="197,56,332,83"/>
+<area shape="rect" id="node4" href="$classsqlitepp_1_1Uncopyable.html" title="A class that forbids copying and assignments for all subclasses. " alt="" coords="5,56,149,83"/>
+</map>
