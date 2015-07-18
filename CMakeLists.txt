@@ -1,32 +1,47 @@
-cmake_minimum_required(VERSION 2.8)
+cmake_minimum_required(VERSION 3.0)
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/CMakeModules/")
-SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
+add_definitions(-std=c++11)
 
 project(sqlitepp)
+enable_testing()
 
-set(SOURCES src/sqlitepp.cpp)
+set(SOURCES src/sqlitepp/sqlitepp.cc)
+set(TEST_SOURCES src/sqlitepp/sqlitepp_test.cc)
+set(LINT_FILES include/sqlitepp/sqlitepp.h ${SOURCES} ${TEST_SOURCES})
 set(INCLUDES include)
+
+include(StyleCheck)
 
 include_directories(${INCLUDES})
 
 add_library(sqlitepp ${SOURCES})
-add_executable(sqlitepptest src/sqlitepptest.cpp)
+add_executable(sqlitepp_test ${TEST_SOURCES})
 
-add_custom_target(check COMMAND sqlitepptest)
-
-set(Boost_USE_MULTITHREADED OFF)
-find_package(Boost 1.54.0 REQUIRED COMPONENTS unit_test_framework)
+find_package(Doxygen)
+find_package(GTest REQUIRED)
 find_package(Sqlite3 REQUIRED)
 
 set(DEP_INCLUDE_DIRS ${SQLITE3_INCLUDE_DIRS})
 set(DEP_LIBRARIES ${SQLITE3_LIBRARIES})
-set(TEST_INCLUDE_DIRS ${Boost_UNIT_TEST_FRAMEWORK_INCLUDE_DIRS})
-set(TEST_LIBRARIES ${Boost_UNIT_TEST_FRAMEWORK_LIBRARIES} sqlitepp)
+set(TEST_INCLUDE_DIRS ${GTEST_INCLUDE_DIRS})
+set(TEST_LIBRARIES ${GTEST_BOTH_LIBRARIES} pthread sqlitepp)
 
 include_directories(${DEP_INCLUDE_DIRS})
 include_directories(${TEST_INCLUDE_DIRS})
 target_link_libraries(sqlitepp ${DEP_LIBRARIES})
-target_link_libraries(sqlitepptest ${TEST_LIBRARIES})
+target_link_libraries(sqlitepp_test ${TEST_LIBRARIES})
 
-# add_subdirectory(tests)
+set(GTEST_ARGS "")
+gtest_add_tests(sqlitepp_test "${GTEST_ARGS}" ${TEST_SOURCES})
 
+add_style_check_target(check "${LINT_FILES}")
+
+if(DOXYGEN_FOUND)
+  configure_file(${CMAKE_MODULE_PATH}/sqlitepp.doxyfile
+    ${CMAKE_CURRENT_BINARY_DIR}/Doxyfile)
+  add_custom_target(doc ${DOXYGEN_EXECUTABLE}
+    ${CMAKE_CURRENT_BINARY_DIR}/Doxyfile
+    WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
+    COMMENT "Generating API documentation with Doxygen"
+    VERBATIM)
+endif(DOXYGEN_FOUND)
