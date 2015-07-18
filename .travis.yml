@@ -20,6 +20,7 @@ before_script:
   - cmake -DCMAKE_BUILD_TYPE=RELEASE /usr/src/gtest/
   - make
   - export LD_LIBRARY_PATH=$PWD:$LD_LIBRARY_PATH
+  - cd ..
 
 script:
   - mkdir bin && cd bin
