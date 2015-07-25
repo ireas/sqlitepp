@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['next',['next',['../classsqlitepp_1_1ResultSet.html#aec7877d4765dbe56957907881ae8dc7b',1,'sqlitepp::ResultSet']]]
+  ['lastinsertrowid',['lastInsertRowId',['../classsqlitepp_1_1Database.html#ae7ff062081d442989cba27cb265d8692',1,'sqlitepp::Database']]]
 ];

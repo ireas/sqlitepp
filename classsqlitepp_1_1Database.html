@@ -132,6 +132,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a212e8fc620a3221982d1fb839bbdb5f6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsqlitepp_1_1Database.html#a212e8fc620a3221982d1fb839bbdb5f6">execute</a> (const std::string &amp;sql)</td></tr>
 <tr class="memdesc:a212e8fc620a3221982d1fb839bbdb5f6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Executes the given SQL string.  <a href="#a212e8fc620a3221982d1fb839bbdb5f6">More...</a><br /></td></tr>
 <tr class="separator:a212e8fc620a3221982d1fb839bbdb5f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae7ff062081d442989cba27cb265d8692"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsqlitepp_1_1Database.html#ae7ff062081d442989cba27cb265d8692">lastInsertRowId</a> () const </td></tr>
+<tr class="memdesc:ae7ff062081d442989cba27cb265d8692"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the row ID of the last element that was inserted.  <a href="#ae7ff062081d442989cba27cb265d8692">More...</a><br /></td></tr>
+<tr class="separator:ae7ff062081d442989cba27cb265d8692"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa98e4eb3833d8d8a275fa20ccb82d66f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsqlitepp_1_1Database.html#aa98e4eb3833d8d8a275fa20ccb82d66f">open</a> (const std::string &amp;file)</td></tr>
 <tr class="memdesc:aa98e4eb3833d8d8a275fa20ccb82d66f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Opens the given database file.  <a href="#aa98e4eb3833d8d8a275fa20ccb82d66f">More...</a><br /></td></tr>
 <tr class="separator:aa98e4eb3833d8d8a275fa20ccb82d66f"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -294,6 +297,32 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="ae7ff062081d442989cba27cb265d8692"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int sqlitepp::Database::lastInsertRowId </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns the row ID of the last element that was inserted. </p>
+<p>If no entry has been inserted into the database, this method returns zero.</p>
+<dl class="section return"><dt>Returns</dt><dd>the index of the last element inserted into the database or zero </dd></dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">std::logic_error</td><td>if the database is not open </td></tr>
+    <tr><td class="paramname"><a class="el" href="classsqlitepp_1_1DatabaseError.html" title="An error that occurred during a database operation. ">DatabaseError</a></td><td>if an error occurred during the execution </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a class="anchor" id="aa98e4eb3833d8d8a275fa20ccb82d66f"></a>
 <div class="memitem">
 <div class="memproto">
@@ -367,7 +396,7 @@ Additional Inherited Members</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Jul 19 2015 00:19:41 for sqlitepp by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Jul 25 2015 19:00:31 for sqlitepp by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

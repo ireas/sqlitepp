@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['open',['open',['../classsqlitepp_1_1Database.html#aa98e4eb3833d8d8a275fa20ccb82d66f',1,'sqlitepp::Database']]],
-  ['openable',['Openable',['../classsqlitepp_1_1Openable.html#a9fdd1ca3876ace6dba6147490ddc8a79',1,'sqlitepp::Openable']]]
+  ['next',['next',['../classsqlitepp_1_1ResultSet.html#aec7877d4765dbe56957907881ae8dc7b',1,'sqlitepp::ResultSet']]]
 ];
