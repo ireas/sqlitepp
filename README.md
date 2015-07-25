@@ -6,11 +6,13 @@ C++ binding for the SQLite library
 Dependencies
 ------------
 
- - compile dependencies
+ - required dependencies
    - CMake 3.0 (or later)
-   - libgtest
- - runtime dependencies
    - libsqlite3
+ - optional dependencies
+   - libgtest (for tests)
+   - Doxygen (for the documentation)
+   - Python (for linting)
 
 Example
 -------
