@@ -187,6 +187,11 @@ void Database::execute(const std::string& sql) {
   statement->step();
 }
 
+int Database::lastInsertRowId() const {
+  requireOpen();
+  return sqlite3_last_insert_rowid(m_handle);
+}
+
 void Database::open(const std::string& file) {
   if (isOpen()) {
     throw std::logic_error("sqlitepp::Database::open(std::string&): "
@@ -235,7 +240,7 @@ bool ResultSet::canRead() const {
 int ResultSet::columnCount() const {
   m_statement->requireOpen();
   m_statement->requireCanRead();
-  return sqlite3_column_count(m_statement->m_handle);
+  return sqlite3_data_count(m_statement->m_handle);
 }
 
 double ResultSet::readDouble(const int column) const {

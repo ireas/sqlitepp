@@ -3,7 +3,6 @@ set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/CMakeModules/")
 add_definitions(-std=c++11)
 
 project(sqlitepp)
-enable_testing()
 
 set(SOURCES src/sqlitepp/sqlitepp.cc)
 set(TEST_SOURCES src/sqlitepp/sqlitepp_test.cc)
@@ -15,24 +14,27 @@ include(StyleCheck)
 include_directories(${INCLUDES})
 
 add_library(sqlitepp ${SOURCES})
-add_executable(sqlitepp_test ${TEST_SOURCES})
 
 find_package(Doxygen)
-find_package(GTest REQUIRED)
 find_package(Sqlite3 REQUIRED)
 
 set(DEP_INCLUDE_DIRS ${SQLITE3_INCLUDE_DIRS})
-set(DEP_LIBRARIES ${SQLITE3_LIBRARIES})
-set(TEST_INCLUDE_DIRS ${GTEST_INCLUDE_DIRS})
-set(TEST_LIBRARIES ${GTEST_BOTH_LIBRARIES} pthread sqlitepp)
+set(DEP_LIBRARIES PUBLIC ${SQLITE3_LIBRARIES})
 
 include_directories(${DEP_INCLUDE_DIRS})
-include_directories(${TEST_INCLUDE_DIRS})
 target_link_libraries(sqlitepp ${DEP_LIBRARIES})
-target_link_libraries(sqlitepp_test ${TEST_LIBRARIES})
 
-set(GTEST_ARGS "")
-gtest_add_tests(sqlitepp_test "${GTEST_ARGS}" ${TEST_SOURCES})
+find_package(GTest)
+if(GTEST_FOUND)
+  enable_testing()
+  set(TEST_INCLUDE_DIRS ${GTEST_INCLUDE_DIRS})
+  set(TEST_LIBRARIES ${GTEST_BOTH_LIBRARIES} pthread sqlitepp)
+  add_executable(sqlitepp_test ${TEST_SOURCES})
+  include_directories(${TEST_INCLUDE_DIRS})
+  target_link_libraries(sqlitepp_test ${TEST_LIBRARIES})
+  set(GTEST_ARGS "")
+  gtest_add_tests(sqlitepp_test "${GTEST_ARGS}" ${TEST_SOURCES})
+endif(GTEST_FOUND)
 
 add_style_check_target(check "${LINT_FILES}")
 

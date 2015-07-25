@@ -32,3 +32,4 @@ build
 
 # IDE project files
 .idea
+bin

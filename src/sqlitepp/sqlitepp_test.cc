@@ -66,10 +66,15 @@ TEST(Database, insert) {
   statement->bind(":id", 1);
   statement->bind(2, "test value");
   statement->execute();
+  const int rowId1 = database.lastInsertRowId();
+  EXPECT_NE(0, rowId1);
   statement->reset();
   statement->bind(":id", 2);
   statement->bind(2, "other value");
   statement->execute();
+  const int rowId2 = database.lastInsertRowId();
+  EXPECT_NE(0, rowId2);
+  EXPECT_NE(rowId1, rowId2);
 }
 
 TEST(Database, query) {

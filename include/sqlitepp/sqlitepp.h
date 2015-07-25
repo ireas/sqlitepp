@@ -387,6 +387,17 @@ class Database : private Uncopyable, public Openable {
   /// \throws DatabaseError if an error occurred during the execution
   void execute(const std::string& sql);
 
+  /// \brief Returns the row ID of the last element that was inserted.
+  ///
+  /// If no entry has been inserted into the database, this method returns
+  /// zero.
+  ///
+  /// \returns the index of the last element inserted into the database or
+  ///          zero
+  /// \throws std::logic_error if the database is not open
+  /// \throws DatabaseError if an error occurred during the execution
+  int lastInsertRowId() const;
+
   /// \brief Opens the given database file.
   ///
   /// The given file must either be a valid SQLite3 database file or may not
